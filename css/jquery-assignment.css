@@ -1,0 +1,107 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div.navbar{
+    display: block;
+    border-radius: 0px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+div.navbar a {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+}
+
+div.navbar a img {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+div.gallery {
+    color: #ffc961;
+    font-size: 17px;
+    padding: 5%;
+    margin: 15px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+
+div.gallery img {
+    width: 40%;
+    margin: 0 auto;
+    display: inline;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #2e2e2e;
+    margin: 0px;
+}
+
+div.gallery img:hover{
+    animation-timing-function : ease-in-out;
+    animation-name: zoom-in;
+    animation-duration: 1s;
+}
+
+@keyframes zoom-in {
+    from {
+        box-shadow: 10px 10px 20px #bba123;
+
+    }
+    to {
+        box-shadow: 5px 5px 10px #2e2e2e;
+    }
+}
+
+div.image-display{
+    display: none;
+    position: fixed;
+    left  : 0;
+    right: 0;
+    top : 0;
+    padding: 20px;
+    width: 100%;
+    height: 500px;
+    margin: 110px auto;
+    text-align: center;
+    background-color: rgba(26, 170, 170, 0.5);
+    border-radius: 5px;
+    z-index: 10;
+}
+
+div.image-display img {
+    display: block;
+    padding: 20px;
+    height: 90%;
+    margin: 10px auto;
+    box-shadow: 5px -5px 25px #2e2e2e;
+    border-radius: 5px;
+    opacity: 1;
+    z-index: 11;
+    background-color: #fff;
+    opacity: 1;
+}
+
+
+div.shadow-sheet {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2000px;
+    background: #2e2e2e;
+    opacity: 0.8;
+    z-index: 5;
+}
