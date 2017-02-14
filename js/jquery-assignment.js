@@ -1,10 +1,6 @@
 $(document).ready(function(){
     window.setInterval(function(){$('div.navbar img.site-logo').effect("bounce","fast")}, 3000);
 
-    $('a.navbar-brand').click(function(){
-        $('.navbar.navbar-default').toggle("explode");
-    });
-
     /*--- Show image ---*/
 
     $('div.gallery img').click(function(event){
