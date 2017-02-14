@@ -22,7 +22,9 @@ $(document).ready(function(){
 
     /*--- Hide image ---*/
 
-    $('div.shadow-sheet').click(function(){
+    $('a.close-viewer').click(function(event){
+				event.preventDefault();
+				event.stopPropagation();
         $('div.image-display').toggle('clip');
         $('div.shadow-sheet').toggle('puff');
     });
@@ -33,23 +35,26 @@ $(document).ready(function(){
     var turningImage = false;
 
     $(document).on('keyup',function(event){
+			
+			  if(turningImage === true) {
+					return;
+				}
 
-        if(turningImage === true)
-            return;
-
-        turningImage = true;
-
-        if(event.which != 27 && ( event.which < 37 || event.which > 40 ))
+				if(event.which != 27 && ( event.which < 37 || event.which > 40 ))
         {
             turningImage = false;
             return;
         }
 
 
-        if(event.which == 27) {
-            $('div.shadow-sheet').trigger('click');
-        }
+        if(event.which == 27 && $('div.shadow-sheet').css('display') == 'block') {
+            $('a.close-viewer').trigger('click');
+        } else if(event.which == 27 && $('div.shadow-sheet').css('display') != 'block') {
+					return;
+				}
 
+			 	turningImage = true;
+        
         event.stopPropagation();
 
         var currentImage = $('div.image-display img');
@@ -80,15 +85,19 @@ $(document).ready(function(){
         var nextImage = $('div.image-wrapper img').last();
 
         if(event.which == 39 || event.which == 40)
-        currentImage.toggle('slide',{direction : 'right', mode : 'fast'}, function(){
+        currentImage.toggle('slide',{direction : 'left', mode : 'fast'}, function(){
             $(this).remove();
-            nextImage.toggle('slide',{direction : 'left', mode : 'fast'});
+            nextImage.toggle('slide',{direction : 'right', mode : 'fast'}, function(){
+							 turningImage = false;
+						});
         });
 
         else
-        currentImage.toggle('slide',{direction : 'left', mode : 'fast'}, function(){
+        currentImage.toggle('slide',{direction : 'right', mode : 'fast'}, function(){
             $(this).remove();
-            nextImage.toggle('slide',{direction : 'right', mode : 'fast'});
+            nextImage.toggle('slide',{direction : 'left', mode : 'fast'}, function(){
+							 turningImage = false;
+						});
         });
 
         $('div.image-display').animate({
@@ -99,9 +108,7 @@ $(document).ready(function(){
                 backgroundColor: 'rgba(26, 170, 170, 0.5)'
             })
 
-        });
-
-        turningImage = false;
+        });       
 
     });
 
